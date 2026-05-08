@@ -7,7 +7,7 @@
     <title>픽 터미널</title>
     <link rel="manifest" href="manifest.webmanifest" />
     <link rel="icon" href="icon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="styles.css?v=3" />
+    <link rel="stylesheet" href="styles.css?v=4" />
   </head>
   <body>
     <div class="backdrop" aria-hidden="true"></div>
@@ -40,7 +40,10 @@
 
       <section class="result-panel" aria-live="polite">
         <div class="result-head">
-          <span id="resultLabel">전체 목록</span>
+          <div>
+            <span id="resultLabel">전체 목록</span>
+            <p>왼쪽 기준 챔피언만 검색 대상</p>
+          </div>
           <span id="resultCount"></span>
         </div>
         <div id="results" class="results"></div>
@@ -66,6 +69,7 @@
       </section>
     </main>
 
-    <script src="app.js?v=3"></script>
+    <script src="champions.js?v=4"></script>
+    <script src="app.js?v=4"></script>
   </body>
 </html>
