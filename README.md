@@ -1,15 +1,13 @@
-# First GitHub Project
+# LoL 상성 노트
 
-This is a simple starter website for learning GitHub with Codex.
+리그 오브 레전드 탑 라인 상성 메모를 빠르게 검색하고 편집하는 작은 웹앱입니다.
 
-You can ask Codex to turn this into:
+## 기능
 
-- a personal website
-- a small web app
-- a notes page
-- a portfolio
-- a learning project
+- 상대 챔피언 이름으로 즉시 검색
+- 추천 픽, 밴, 메모 확인
+- 항목 추가, 수정, 삭제
+- 브라우저에 자동 저장
+- 목록 텍스트 복사
 
-Once Git and GitHub are ready, this folder can be published to GitHub.
-
-Open `index.html` in a browser to preview it.
+`index.html`을 열면 바로 사용할 수 있습니다.
