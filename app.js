@@ -46,7 +46,6 @@ const searchInput = document.querySelector("#searchInput");
 const results = document.querySelector("#results");
 const resultLabel = document.querySelector("#resultLabel");
 const resultCount = document.querySelector("#resultCount");
-const totalCount = document.querySelector("#totalCount");
 const form = document.querySelector("#matchupForm");
 const enemyInput = document.querySelector("#enemyInput");
 const pickInput = document.querySelector("#pickInput");
@@ -113,7 +112,6 @@ function render() {
 
   resultLabel.textContent = query ? `"${query}" 검색 결과` : "전체 목록";
   resultCount.textContent = `${visible.length}개`;
-  totalCount.textContent = matchups.length;
 
   if (visible.length === 0) {
     results.innerHTML = `<div class="empty">검색 결과가 없습니다.</div>`;
