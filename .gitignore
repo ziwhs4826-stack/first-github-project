@@ -1,0 +1,12 @@
+# System files
+Thumbs.db
+Desktop.ini
+
+# Editor folders
+.vscode/
+.idea/
+
+# Dependencies and build output
+node_modules/
+dist/
+build/
