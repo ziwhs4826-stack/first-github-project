@@ -122,18 +122,52 @@ function render() {
     .map(
       (item) => `
         <article class="matchup">
-          <div class="enemy">${escapeHtml(item.enemy)}</div>
-          <div class="picks">
-            ${item.picks.map((pick) => `<span class="pick">${escapeHtml(pick)}</span>`).join("")}
+          <div class="enemy-card">
+            ${renderPortrait(item.enemy, "large")}
+            <div class="enemy-meta">
+              <span class="enemy-kicker">ENEMY</span>
+              <div class="enemy">${escapeHtml(item.enemy)}</div>
+            </div>
+          </div>
+          <div class="picks-wrap">
+            <span class="pick-kicker">COUNTER PICKS</span>
+            <div class="picks">
+              ${item.picks.map((pick) => renderPickChip(pick)).join("")}
+            </div>
           </div>
           <div class="row-actions">
-            <button type="button" data-action="edit" data-enemy="${escapeHtml(item.enemy)}">수정</button>
+            <button class="edit-btn" type="button" data-action="edit" data-enemy="${escapeHtml(item.enemy)}">수정</button>
             <button class="delete-btn" type="button" data-action="delete" data-enemy="${escapeHtml(item.enemy)}">삭제</button>
           </div>
         </article>
       `
     )
     .join("");
+}
+
+function renderPickChip(pick) {
+  return `
+    <span class="pick" title="${escapeHtml(pick)}">
+      ${renderPortrait(pick, "small")}
+      <span class="pick-name">${escapeHtml(pick)}</span>
+    </span>
+  `;
+}
+
+function renderPortrait(name, size) {
+  const champion = resolveChampion(name);
+  const fallback = escapeHtml((champion.name || "?").slice(0, 1));
+  const label = escapeHtml(champion.original || champion.name);
+  const image = champion.image
+    ? `<img src="${champion.image}" alt="" loading="lazy" onerror="this.remove(); this.parentElement.classList.add('is-fallback');" />`
+    : "";
+
+  return `
+    <span class="portrait portrait-${size}" title="${label}" aria-label="${label}">
+      ${image}
+      <span class="portrait-fallback">${fallback}</span>
+    </span>
+  `;
 }
 
 function escapeHtml(value) {
