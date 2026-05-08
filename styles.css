@@ -1,10 +1,15 @@
 :root {
   color-scheme: light;
-  --ink: #172026;
-  --muted: #52616b;
-  --paper: #f7f2e8;
-  --accent: #1d7874;
-  --line: #d9cdbb;
+  --bg: #eef1f4;
+  --surface: #ffffff;
+  --surface-2: #f7f9fb;
+  --text: #171b21;
+  --muted: #66717f;
+  --line: #d8dee6;
+  --accent: #0f766e;
+  --accent-2: #a53f2b;
+  --focus: #1f6feb;
+  --shadow: 0 14px 40px rgba(17, 24, 39, 0.08);
 }
 
 * {
@@ -14,61 +19,236 @@
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: Arial, Helvetica, sans-serif;
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, "Malgun Gothic", sans-serif;
 }
 
-.page {
-  width: min(920px, calc(100% - 32px));
+button,
+input {
+  font: inherit;
+}
+
+button {
+  min-height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+button:hover {
+  border-color: #b8c3cf;
+  background: var(--surface-2);
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid rgba(31, 111, 235, 0.22);
+  outline-offset: 2px;
+}
+
+.shell {
+  width: min(1120px, calc(100% - 28px));
   margin: 0 auto;
-  padding: 72px 0;
+  padding: 28px 0;
 }
 
-.intro {
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 44px;
+.topbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 0 22px;
 }
 
 .eyebrow {
-  margin: 0 0 18px;
+  margin: 0 0 8px;
   color: var(--accent);
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 800;
   letter-spacing: 0;
   text-transform: uppercase;
 }
 
-h1 {
-  max-width: 780px;
+h1,
+h2 {
   margin: 0;
-  font-size: clamp(42px, 9vw, 84px);
-  line-height: 0.98;
   letter-spacing: 0;
 }
 
-.summary {
-  max-width: 640px;
-  margin: 28px 0 0;
-  color: var(--muted);
-  font-size: 19px;
-  line-height: 1.7;
-}
-
-.next {
-  padding-top: 36px;
+h1 {
+  font-size: 34px;
+  line-height: 1.1;
 }
 
 h2 {
-  margin: 0 0 18px;
-  font-size: 24px;
+  font-size: 18px;
 }
 
-ul {
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.actions button,
+#cancelBtn {
+  padding: 0 14px;
+}
+
+#resetBtn,
+.delete-btn {
+  color: var(--accent-2);
+}
+
+.search-panel,
+.result-panel,
+.editor-panel {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.search-panel {
   display: grid;
-  gap: 12px;
-  margin: 0;
-  padding-left: 22px;
+  gap: 10px;
+  padding: 18px;
+}
+
+label {
   color: var(--muted);
-  font-size: 18px;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+input {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0 14px;
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+#searchInput {
+  font-size: 21px;
+}
+
+.result-panel,
+.editor-panel {
+  margin-top: 16px;
+}
+
+.result-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid var(--line);
+  padding: 14px 18px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.results {
+  display: grid;
+  gap: 1px;
+  background: var(--line);
+}
+
+.matchup {
+  display: grid;
+  grid-template-columns: minmax(130px, 0.7fr) minmax(180px, 1.6fr) auto;
+  gap: 14px;
+  align-items: center;
+  min-height: 70px;
+  padding: 14px 18px;
+  background: var(--surface);
+}
+
+.enemy {
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.picks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pick {
+  border: 1px solid #c8d7d4;
+  border-radius: 8px;
+  padding: 7px 10px;
+  background: #eef8f6;
+  color: #0b4f49;
+  font-weight: 800;
+}
+
+.row-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.row-actions button {
+  min-width: 54px;
+  padding: 0 10px;
+}
+
+.empty {
+  padding: 34px 18px;
+  background: var(--surface);
+  color: var(--muted);
+  text-align: center;
+}
+
+.editor-panel {
+  padding: 18px;
+}
+
+#matchupForm {
+  display: grid;
+  grid-template-columns: minmax(140px, 0.8fr) minmax(220px, 1.4fr) 88px 76px;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+#saveBtn {
+  border-color: #0f766e;
+  background: var(--accent);
+  color: #ffffff;
+}
+
+#saveBtn:hover {
+  background: #0b625c;
+}
+
+@media (max-width: 760px) {
+  .topbar,
+  .matchup,
+  #matchupForm {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar {
+    display: grid;
+  }
+
+  .actions,
+  .row-actions {
+    width: 100%;
+  }
+
+  .actions button,
+  .row-actions button,
+  #saveBtn,
+  #cancelBtn {
+    flex: 1;
+    width: 100%;
+  }
 }
