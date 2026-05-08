@@ -1,5 +1,5 @@
-const cacheName = "pick-terminal-v2";
-const assets = ["./", "index.html", "styles.css", "app.js", "manifest.webmanifest", "icon.svg"];
+const cacheName = "pick-terminal-v3";
+const assets = ["./", "index.html", "styles.css?v=3", "app.js?v=3", "manifest.webmanifest", "icon.svg"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(cacheName).then((cache) => cache.addAll(assets)));
