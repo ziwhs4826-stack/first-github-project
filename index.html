@@ -3,15 +3,19 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>LoL 상성 노트</title>
+    <meta name="theme-color" content="#080b12" />
+    <title>픽 터미널</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="icon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div class="backdrop" aria-hidden="true"></div>
     <main class="shell">
       <header class="topbar">
         <div>
-          <p class="eyebrow">Top Lane Matchup Notes</p>
-          <h1>LoL 상성 노트</h1>
+          <p class="eyebrow">TOP LANE COUNTER SYSTEM</p>
+          <h1>픽 터미널</h1>
         </div>
         <div class="actions">
           <button id="exportBtn" type="button">내보내기</button>
@@ -20,7 +24,7 @@
       </header>
 
       <section class="search-panel">
-        <label for="searchInput">상대 챔피언 검색</label>
+        <label for="searchInput">ENEMY LOCK-IN</label>
         <input id="searchInput" type="search" autocomplete="off" placeholder="예: 다리우스, 카밀, 티모" />
       </section>
 
@@ -33,7 +37,7 @@
       </section>
 
       <section class="editor-panel">
-        <h2>항목 편집</h2>
+        <h2>데이터 편집</h2>
         <form id="matchupForm">
           <input id="enemyInput" type="text" autocomplete="off" placeholder="상대 챔피언" required />
           <input id="pickInput" type="text" autocomplete="off" placeholder="추천 픽, 밴, 메모" required />
