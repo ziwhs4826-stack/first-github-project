@@ -3,28 +3,46 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>My First GitHub Project</title>
+    <title>LoL 상성 노트</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <main class="page">
-      <section class="intro">
-        <p class="eyebrow">First GitHub Project</p>
-        <h1>Start small, then grow it into a real project.</h1>
-        <p class="summary">
-          This page is the first project we are publishing to GitHub with Codex.
-          Later, it can grow into a portfolio, notes app, blog, or creative lab.
-        </p>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Top Lane Matchup Notes</p>
+          <h1>LoL 상성 노트</h1>
+        </div>
+        <div class="actions">
+          <button id="exportBtn" type="button">내보내기</button>
+          <button id="resetBtn" type="button">초기화</button>
+        </div>
+      </header>
+
+      <section class="search-panel">
+        <label for="searchInput">상대 챔피언 검색</label>
+        <input id="searchInput" type="search" autocomplete="off" placeholder="예: 다리우스, 카밀, 티모" />
       </section>
 
-      <section class="next">
-        <h2>Next Goals</h2>
-        <ul>
-          <li>Create a GitHub repository</li>
-          <li>Publish this project</li>
-          <li>Add one useful feature at a time</li>
-        </ul>
+      <section class="result-panel" aria-live="polite">
+        <div class="result-head">
+          <span id="resultLabel">전체 목록</span>
+          <span id="resultCount"></span>
+        </div>
+        <div id="results" class="results"></div>
+      </section>
+
+      <section class="editor-panel">
+        <h2>항목 편집</h2>
+        <form id="matchupForm">
+          <input id="enemyInput" type="text" autocomplete="off" placeholder="상대 챔피언" required />
+          <input id="pickInput" type="text" autocomplete="off" placeholder="추천 픽, 밴, 메모" required />
+          <button id="saveBtn" type="submit">추가</button>
+          <button id="cancelBtn" type="button" hidden>취소</button>
+        </form>
       </section>
     </main>
+
+    <script src="app.js"></script>
   </body>
 </html>
