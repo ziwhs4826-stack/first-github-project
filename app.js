@@ -57,6 +57,12 @@ const exportBtn = document.querySelector("#exportBtn");
 let matchups = loadMatchups();
 let editingEnemy = "";
 
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js");
+  });
+}
+
 function loadMatchups() {
   const saved = localStorage.getItem(storageKey);
   if (!saved) return starterMatchups;
