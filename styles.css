@@ -14,8 +14,8 @@
   --red: #ff5574;
   --green: #5cf2a8;
   --shadow: 0 28px 88px rgba(0, 0, 0, 0.52);
-  --enemy-col: 252px;
-  --counter-gap: 14px;
+  --enemy-col: 220px;
+  --counter-gap: 12px;
 }
 
 * {
@@ -191,9 +191,10 @@ input::placeholder {
 }
 
 .results {
-  display: grid;
-  align-content: start;
+  display: flex;
+  flex-direction: column;
   gap: 8px;
+  min-height: 0;
   height: 100%;
   overflow: auto;
   padding: 10px;
@@ -202,10 +203,13 @@ input::placeholder {
 
 .matchup {
   position: relative;
+  flex: 0 0 auto;
   display: grid;
   grid-template-columns: var(--enemy-col) minmax(0, 1fr);
+  grid-template-areas: "enemy picks";
   gap: var(--counter-gap);
-  align-items: center;
+  align-items: start;
+  height: auto;
   min-height: 96px;
   border: 1px solid rgba(139, 156, 184, 0.16);
   border-radius: 10px;
@@ -225,6 +229,7 @@ input::placeholder {
 }
 
 .enemy-card {
+  grid-area: enemy;
   display: grid;
   grid-template-columns: 72px 1fr;
   gap: 12px;
@@ -302,9 +307,11 @@ input::placeholder {
 }
 
 .picks-wrap {
+  grid-area: picks;
   display: grid;
   gap: 7px;
   min-width: 0;
+  align-self: start;
 }
 
 .picks {
@@ -312,6 +319,7 @@ input::placeholder {
   flex-wrap: wrap;
   gap: 7px;
   min-width: 0;
+  width: 100%;
 }
 
 .pick {
@@ -491,7 +499,7 @@ input::placeholder {
 
 @media (max-width: 860px) {
   :root {
-    --enemy-col: 205px;
+    --enemy-col: 196px;
     --counter-gap: 10px;
   }
 
@@ -501,8 +509,10 @@ input::placeholder {
 
   .matchup {
     grid-template-columns: var(--enemy-col) minmax(0, 1fr);
+    grid-template-areas: "enemy picks";
     gap: var(--counter-gap);
     min-height: 98px;
+    height: auto;
     padding: 12px 76px 12px 12px;
   }
 
@@ -533,7 +543,7 @@ input::placeholder {
 
 @media (max-width: 560px) {
   :root {
-    --enemy-col: 178px;
+    --enemy-col: 168px;
     --counter-gap: 8px;
   }
 
@@ -544,7 +554,9 @@ input::placeholder {
 
   .matchup {
     grid-template-columns: var(--enemy-col) minmax(0, 1fr);
+    grid-template-areas: "enemy picks";
     min-height: 94px;
+    height: auto;
     padding: 10px 48px 10px 10px;
   }
 
@@ -567,5 +579,36 @@ input::placeholder {
     width: 28px;
     height: 28px;
     min-height: 28px;
+  }
+}
+
+@media (max-width: 430px) {
+  :root {
+    --enemy-col: 132px;
+    --counter-gap: 8px;
+  }
+
+  .enemy-card {
+    grid-template-columns: 54px minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .portrait {
+    width: 52px;
+    height: 52px;
+  }
+
+  .enemy {
+    font-size: 18px;
+  }
+
+  .enemy-kicker,
+  .pick-kicker {
+    font-size: 9px;
+    padding: 3px 6px;
+  }
+
+  .pick {
+    max-width: 128px;
   }
 }
