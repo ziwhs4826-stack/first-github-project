@@ -44,7 +44,6 @@ const storageKey = "lol-matchup-notes:v1";
 
 const searchInput = document.querySelector("#searchInput");
 const results = document.querySelector("#results");
-const resultLabel = document.querySelector("#resultLabel");
 const resultCount = document.querySelector("#resultCount");
 const form = document.querySelector("#matchupForm");
 const enemyInput = document.querySelector("#enemyInput");
@@ -110,7 +109,6 @@ function render() {
   const visible = filterMatchups();
   const query = searchInput.value.trim();
 
-  resultLabel.textContent = query ? `"${query}" 검색 결과` : "전체 목록";
   resultCount.textContent = `${visible.length}개`;
 
   if (visible.length === 0) {
