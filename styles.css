@@ -124,7 +124,7 @@ h2 {
 
 .search-box {
   display: grid;
-  grid-template-columns: 42px 1fr;
+  grid-template-columns: 42px minmax(0, 1fr) auto;
   align-items: center;
   min-height: 40px;
   border: 1px solid rgba(55, 214, 255, 0.34);
@@ -169,36 +169,23 @@ input::placeholder {
   font-weight: 900;
 }
 
+.search-count {
+  margin-right: 8px;
+  border: 1px solid rgba(215, 181, 109, 0.34);
+  border-radius: 999px;
+  padding: 5px 9px;
+  background: rgba(8, 13, 23, 0.76);
+  color: #ffe4a2;
+  font-size: 12px;
+  font-weight: 900;
+  white-space: nowrap;
+  box-shadow: 0 0 18px rgba(215, 181, 109, 0.08);
+}
+
 .result-panel {
   position: relative;
   min-height: 0;
   overflow: hidden;
-}
-
-.result-head {
-  position: absolute;
-  top: 8px;
-  right: 10px;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  pointer-events: none;
-}
-
-#resultLabel {
-  display: none;
-}
-
-#resultCount {
-  border: 1px solid rgba(215, 181, 109, 0.34);
-  border-radius: 999px;
-  padding: 5px 9px;
-  background: rgba(8, 13, 23, 0.72);
-  color: #ffe4a2;
-  font-size: 12px;
-  font-weight: 900;
-  box-shadow: 0 0 18px rgba(215, 181, 109, 0.08);
 }
 
 .results {
@@ -499,23 +486,72 @@ input::placeholder {
 }
 
 @media (max-width: 860px) {
-  .matchup,
   #matchupForm {
     grid-template-columns: 1fr;
   }
 
   .matchup {
-    padding-right: 12px;
+    grid-template-columns: minmax(172px, 0.9fr) minmax(180px, 1.1fr);
+    gap: 10px;
+    min-height: 98px;
+    padding: 12px 76px 12px 12px;
   }
 
-  .row-actions {
-    position: static;
-    margin-top: 4px;
+  .enemy-card {
+    grid-template-columns: 72px minmax(0, 1fr);
+  }
+
+  .picks {
+    gap: 6px;
+  }
+
+  .pick {
+    grid-template-columns: 28px auto;
+    max-width: 150px;
+  }
+
+  .pick-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   #saveBtn,
   #cancelBtn {
     flex: 1;
     width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .shell {
+    width: calc(100% - 14px);
+    padding: 7px 0;
+  }
+
+  .matchup {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    padding: 10px 48px 10px 10px;
+  }
+
+  .enemy-card {
+    grid-template-columns: 62px minmax(0, 1fr);
+  }
+
+  .portrait {
+    width: 60px;
+    height: 60px;
+  }
+
+  .row-actions {
+    top: 8px;
+    right: 8px;
+    flex-direction: column;
+  }
+
+  .icon-btn {
+    width: 28px;
+    height: 28px;
+    min-height: 28px;
   }
 }
