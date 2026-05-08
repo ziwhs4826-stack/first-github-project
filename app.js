@@ -54,6 +54,8 @@ const saveBtn = document.querySelector("#saveBtn");
 const cancelBtn = document.querySelector("#cancelBtn");
 const resetBtn = document.querySelector("#resetBtn");
 const exportBtn = document.querySelector("#exportBtn");
+const editorToggle = document.querySelector("#editorToggle");
+const editorPanel = document.querySelector("#editorPanel");
 
 let matchups = loadMatchups();
 let editingEnemy = "";
@@ -122,6 +124,10 @@ function render() {
     .map(
       (item) => `
         <article class="matchup">
+          <div class="row-actions">
+            <button class="icon-btn edit-btn" type="button" data-action="edit" data-enemy="${escapeHtml(item.enemy)}" aria-label="${escapeHtml(item.enemy)} 수정" title="수정">✎</button>
+            <button class="icon-btn delete-btn" type="button" data-action="delete" data-enemy="${escapeHtml(item.enemy)}" aria-label="${escapeHtml(item.enemy)} 삭제" title="삭제">×</button>
+          </div>
           <div class="enemy-card">
             ${renderPortrait(item.enemy, "large")}
             <div class="enemy-meta">
@@ -134,10 +140,6 @@ function render() {
             <div class="picks">
               ${item.picks.map((pick) => renderPickChip(pick)).join("")}
             </div>
-          </div>
-          <div class="row-actions">
-            <button class="edit-btn" type="button" data-action="edit" data-enemy="${escapeHtml(item.enemy)}">수정</button>
-            <button class="delete-btn" type="button" data-action="delete" data-enemy="${escapeHtml(item.enemy)}">삭제</button>
           </div>
         </article>
       `
@@ -190,6 +192,12 @@ function clearForm() {
   cancelBtn.hidden = true;
 }
 
+function setEditorOpen(isOpen) {
+  editorPanel.hidden = !isOpen;
+  editorToggle.classList.toggle("is-open", isOpen);
+  editorToggle.setAttribute("aria-label", isOpen ? "데이터 편집 닫기" : "데이터 편집 열기");
+}
+
 function upsertMatchup(enemy, picks) {
   const existingIndex = matchups.findIndex((item) => normalize(item.enemy) === normalize(editingEnemy || enemy));
   const nextItem = { enemy, picks };
@@ -226,6 +234,7 @@ results.addEventListener("click", (event) => {
   if (!item) return;
 
   if (button.dataset.action === "edit") {
+    setEditorOpen(true);
     editingEnemy = item.enemy;
     enemyInput.value = item.enemy;
     pickInput.value = item.picks.join(", ");
@@ -255,6 +264,10 @@ exportBtn.addEventListener("click", async () => {
   window.setTimeout(() => {
     exportBtn.textContent = "내보내기";
   }, 1200);
+});
+
+editorToggle.addEventListener("click", () => {
+  setEditorOpen(editorPanel.hidden);
 });
 
 saveMatchups();
